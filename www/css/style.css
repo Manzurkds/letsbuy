@@ -1,0 +1,84 @@
+/* Empty. Add your own CSS if you like */
+/*background color: rgb(240, 243, 248)*/
+
+body {
+  font-size: 10px;
+}
+.my-navbar {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+.screen-body {
+  background: rgb(240, 243, 248);
+  margin-top: -0.1em;
+}
+.sub-heading {
+  background: white;
+  width: 100%;
+}
+
+.my-tabs {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 6em;
+}
+
+
+/*Style for Home Page*/
+.search-box {
+  margin-left: 1.5em;
+  margin-right: 1.5em;
+}
+.search-box label{
+  border: 0;
+  padding-left: 0;
+}
+.search-input {
+  background: grey;
+}
+.sub-heading input{
+  background: rgb(240, 243, 248);
+  text-indent: 1em;
+  border-radius: 0.1em;
+  background-image: url('../img/search.png');
+  background-size: 1.5em 1.5em;
+  background-position: 95%;
+  background-repeat: no-repeat;
+}
+.sub-heading ::-webkit-input-placeholder {
+  text-indent: 1em;
+  font-size: 1.2em;
+}
+
+
+
+
+
+
+
+
+
+
+/*Ionic Default Theming changes*/
+.bar-stable {
+  background: white !important;
+  border-style: none;
+}
+.bar-header {
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+}
+.tab-item-active {
+  border-style: none !important;
+}
+.tab-item.activated {
+  border-style: none !important;
+}
+.tabs-top > .tabs {
+  top: auto !important;
+  bottom: 0 !important;
+  height: 6em;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+}

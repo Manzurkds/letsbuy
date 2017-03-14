@@ -1,5 +1,6 @@
 /* Empty. Add your own CSS if you like */
-/*background color: rgb(240, 243, 248)*/
+/*background color: rgb(240, 243, 248)
+heart color: rgb(216, 3, 56) #D80338*/
 
 body {
   font-size: 10px;
@@ -49,6 +50,78 @@ body {
 .sub-heading ::-webkit-input-placeholder {
   text-indent: 1em;
   font-size: 1.2em;
+}
+.screen-content-heading {
+  padding: 1em 1.5em 1em 1.5em;
+}
+.screen-content-heading p{
+  font-size: 1.5em;
+}
+.screen-content-main {
+  padding: 0 1.5em 0 1.5em;
+}
+.product-listings {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.product {
+  height: 20em;
+  flex-basis: 48%;
+  background: white;
+  box-sizing: border-box;
+  border: 0.2em solid lightgrey;
+  border-radius: 0.5em;
+}
+.product:nth-child(even) {
+  margin-top: 2em;
+}
+.product:nth-child(2) {
+  height: 22em;
+  margin-top: 0em;
+}
+.product:nth-child(2) .product-view {
+  height: 17em !important;
+}
+.product-view {
+  background: transparent;
+  height: 15em;
+  /*border-top-left-radius: 0.5em;
+  border-top-right-radius: 0.5em;*/
+  border-bottom: 0.2em solid rgb(240, 243, 248);
+}
+.product-view-header {
+  height: 12em;
+}
+.product:nth-child(2) .product-view .product-view-header {
+  height: 14em;
+}
+.product-view-footer {
+  font-size: 2em;
+  height: 2em;
+  padding: 0 1em 1em 1em;
+  display: flex;
+  align-items: center;
+}
+.product-view-footer .ion-ios-heart {
+  color: #D80338;
+  flex: 1;
+}
+.product-view-footer .ion-ios-cart {
+  color: #387EF5;
+  flex: 1;
+  text-align: right;
+}
+.product-details {
+  background: transparent;
+  height: 5em;
+  padding: 0.5em 0 0.5em 0;
+}
+.product-details p {
+  font-size: 1.6em;
+  line-height: 0.8em;
+  margin-left: 1.2em;
 }
 
 

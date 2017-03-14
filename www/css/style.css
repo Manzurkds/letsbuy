@@ -93,9 +93,14 @@ body {
 }
 .product-view-header {
   height: 12em;
+  display: flex;
 }
 .product:nth-child(2) .product-view .product-view-header {
   height: 14em;
+}
+.product-view-header img {
+  width: 12em;
+  margin: auto;
 }
 .product-view-footer {
   font-size: 2em;

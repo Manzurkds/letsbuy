@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('letsbuy', ['ionic', 'letsbuy.services'])
+angular.module('letsbuy', ['ionic', 'letsbuy.controllers', 'letsbuy.services'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -31,9 +31,39 @@ angular.module('letsbuy', ['ionic', 'letsbuy.services'])
   // Each state's controller can be found in controllers.js
   $stateProvider
 
-    .state('home', {
+  .state('home', {
     url: '/',
-    templateUrl: 'templates/home.html'
+    templateUrl: 'templates/home.html',
+    controller: 'homeCtrl'
+  })
+  .state('productDetail', {
+    url: '/productDetail',
+    params: {
+     'Id': null,
+     'Query': null
+  },
+    templateUrl: 'templates/productDetail.html',
+    controller: 'productDetailCtrl'
+  })
+  .state('favourites', {
+    url: '/favourites',
+    templateUrl: 'templates/favourites.html',
+    controller: 'favouritesCtrl'
+  })
+  .state('list', {
+    url: '/list',
+    templateUrl: 'templates/list.html',
+    controller: 'listCtrl'
+  })
+  .state('cart', {
+    url: '/cart',
+    templateUrl: 'templates/cart.html',
+    controller: 'cartCtrl'
+  })
+  .state('settings', {
+    url: '/settings',
+    templateUrl: 'templates/settings.html',
+    controller: 'settingsCtrl'
   })
 
   // Each tab has its own nav history stac

@@ -1,49 +1,64 @@
 angular.module('letsbuy.services', [])
-.factory('Chats', function() {
+.factory('products', function() {
   // Might use a resource here that returns a JSON array
 
   // Some fake testing data
-  var chats = [{
+  var products = [{
     id: 0,
-    name: 'Ben Sparrow',
-    lastText: 'You on your way?',
-    face: 'img/ben.png'
+    name: 'Sleek Shades',
+    price: '$50',
+    image: 'img/sleek-shades-1.png',
+    favourited: false,
+    carted: true
   }, {
     id: 1,
-    name: 'Max Lynx',
-    lastText: 'Hey, it\'s me',
-    face: 'img/max.png'
+    name: 'Blue Oceans',
+    price: '$49.55',
+    image: 'img/blue-oceans-1.png',
+    favourited: true,
+    carted: false
   }, {
     id: 2,
-    name: 'Adam Bradleyson',
-    lastText: 'I should buy a boat',
-    face: 'img/adam.jpg'
+    name: 'Blue Oceans',
+    price: '$60',
+    image: 'img/blue-oceans-2.png',
+    favourited: false,
+    carted: false
   }, {
     id: 3,
-    name: 'Perry Governor',
-    lastText: 'Look at my mukluks!',
-    face: 'img/perry.png'
+    name: 'Silver Metals',
+    price: '$50',
+    image: 'img/silver-metals-1.png',
+    favourited: false,
+    carted: false
   }, {
     id: 4,
-    name: 'Mike Harrington',
-    lastText: 'This is wicked good ice cream.',
-    face: 'img/mike.png'
+    name: 'Silver Metals',
+    price: '$50',
+    image: 'img/silver-metals-2.png',
+    favourited: false,
+    carted: false
   }];
 
   return {
     all: function() {
-      return chats;
+      return products;
     },
-    remove: function(chat) {
-      chats.splice(chats.indexOf(chat), 1);
+    updateFavourites: function(id) {
+      for(i=0; i<products.length; i++)
+        if(products[i].id == id)
+          if(products[i].favourited == true)
+            products[i].favourited = false;
+          else
+            products[i].favourited = true;
     },
-    get: function(chatId) {
-      for (var i = 0; i < chats.length; i++) {
-        if (chats[i].id === parseInt(chatId)) {
-          return chats[i];
-        }
-      }
-      return null;
+    updateCart: function(id) {
+      for(i=0; i<products.length; i++)
+        if(products[i].id == id)
+          if(products[i].carted == true)
+            products[i].carted = false;
+          else
+            products[i].carted = true;
     }
   };
 });

@@ -3,109 +3,34 @@
   <div class="sub-heading">
     <div class="search-box">
       <label class="item item-input">
-        <input type="text" placeholder="Search" class="search-input">
+        <input type="text" placeholder="Search" class="search-input" ng-model="searchText">
       </label>
     </div>
   </div>
   <div class="screen-content">
     <div class="screen-content-heading">
-      <p>Showing 50 results for <b>"Shades"</b></p>
+      <p ng-if="searchText">Showing {{(products | filter: searchText).length}} results for <b>"{{searchText}}"</b></p>
+      <p ng-if="!searchText">Showing All Products</p>
     </div>
     <div class="screen-content-main">
-          <ion-scroll zooming="true" direction="y" style="width: inherit; height: 70vh">
+          <ion-scroll direction="y" style="width: inherit; height: 70vh">
             <div class="product-listings">
-              <div class="product">
+              <div class="product" ng-repeat="product in products | filter:searchText">
                 <div class="product-view">
                   <div class="product-view-header">
-                    <img src="img/blue-oceans-1.png" alt="">
+                    <img src="{{product.image}}" alt="">
                   </div>
                   <div class="product-view-footer">
-                      <i class="icon ion-ios-heart"></i>
-                      <i class="icon ion-ios-cart"></i>
+                      <i class="icon ion-ios-heart" ng-class="{is_favourited: product.favourited}" ng-click="addToFavourites(product.id)"></i>
+                      <i class="icon ion-ios-cart" ng-class="{is_carted: product.carted}" ng-click="addToCart(product.id)"></i>
                   </div>
                 </div>
-                <div class="product-details">
-                  <p class="product-details-title">Sleek Shades</p>
-                  <p class="product-details-price">$50</p>
-                </div>
-              </div>
-              <div class="product">
-                <div class="product-view">
-                  <div class="product-view-header">
-                    <img src="img/blue-oceans-2.png" alt="">
-                  </div>
-                  <div class="product-view-footer">
-                      <i class="icon ion-ios-heart"></i>
-                      <i class="icon ion-ios-cart"></i>
-                  </div>
-                </div>
-                <div class="product-details">
-                  <p class="product-details-title">Sleek Shades</p>
-                  <p class="product-details-price">$50</p>
-                </div>
-              </div>
-              <div class="product">
-                <div class="product-view">
-                  <div class="product-view-header">
-                    <img src="img/sleek-shades-1.png" alt="">
-                  </div>
-                  <div class="product-view-footer">
-                      <i class="icon ion-ios-heart"></i>
-                      <i class="icon ion-ios-cart"></i>
-                  </div>
-                </div>
-                <div class="product-details">
-                  <p class="product-details-title">Sleek Shades</p>
-                  <p class="product-details-price">$50</p>
-                </div>
-              </div>
-              <div class="product">
-                <div class="product-view">
-                  <div class="product-view-header">
-                    <img src="img/silver-metals-1.png" alt="">
-                  </div>
-                  <div class="product-view-footer">
-                      <i class="icon ion-ios-heart"></i>
-                      <i class="icon ion-ios-cart"></i>
-                  </div>
-                </div>
-                <div class="product-details">
-                  <p class="product-details-title">Sleek Shades</p>
-                  <p class="product-details-price">$50</p>
-                </div>
-              </div>
-              <div class="product">
-                <div class="product-view">
-                  <div class="product-view-header">
-                    <img src="img/silver-metals-2.png" alt="">
-                  </div>
-                  <div class="product-view-footer">
-                      <i class="icon ion-ios-heart"></i>
-                      <i class="icon ion-ios-cart"></i>
-                  </div>
-                </div>
-                <div class="product-details">
-                  <p class="product-details-title">Sleek Shades</p>
-                  <p class="product-details-price">$50</p>
-                </div>
-              </div>
-              <div class="product">
-                <div class="product-view">
-                  <div class="product-view-header">
-                    <img src="img/blue-oceans-1.png" alt="">
-                  </div>
-                  <div class="product-view-footer">
-                      <i class="icon ion-ios-heart"></i>
-                      <i class="icon ion-ios-cart"></i>
-                  </div>
-                </div>
-                <div class="product-details">
-                  <p class="product-details-title">Sleek Shades</p>
-                  <p class="product-details-price">$50</p>
+                <div class="product-details" ng-click="redirect(product.id, searchText)">
+                  <p class="product-details-title">{{product.name}}</p>
+                  <p class="product-details-price">{{product.price}}</p>
                 </div>
               </div>
             </div>
-
           </ion-scroll>
     </div>
   </div>

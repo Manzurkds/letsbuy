@@ -1,4 +1,9 @@
-<ion-view view-title="Dashboard">
+<div class="bar-stable my-navbar">
+  <div class="navbar-action" ng-click="myGoBack()">
+    <h3>Products</h3>
+  </div>
+</div>
+<ion-view class="my-ion-view">
   <ion-content class="screen-body">
   <div class="sub-heading">
     <div class="search-box">
@@ -13,26 +18,43 @@
       <p ng-if="!searchText">Showing All Products</p>
     </div>
     <div class="screen-content-main">
-          <ion-scroll direction="y" style="width: inherit; height: 70vh">
+          <ion-content class="product-listings-content">
             <div class="product-listings">
-              <div class="product" ng-repeat="product in products | filter:searchText">
+              <div class="product" ng-repeat="product in products | filter:searchText"  ng-click="openProductDetail(product.id, searchText)">
                 <div class="product-view">
                   <div class="product-view-header">
                     <img src="{{product.image}}" alt="">
                   </div>
                   <div class="product-view-footer">
-                      <i class="icon ion-ios-heart" ng-class="{is_favourited: product.favourited}" ng-click="addToFavourites(product.id)"></i>
-                      <i class="icon ion-ios-cart" ng-class="{is_carted: product.carted}" ng-click="addToCart(product.id)"></i>
+                      <i class="icon ion-ios-heart" ng-class="{is_favourited: product.favourited}" ng-click="addToFavourites(product.id); $event.stopPropagation()"></i>
+                      <i class="icon ion-ios-cart" ng-class="{is_carted: product.carted}" ng-click="addToCart(product.id); $event.stopPropagation()"></i>
                   </div>
                 </div>
-                <div class="product-details" ng-click="redirect(product.id, searchText)">
+                <div class="product-details">
                   <p class="product-details-title">{{product.name}}</p>
                   <p class="product-details-price">{{product.price}}</p>
                 </div>
               </div>
             </div>
-          </ion-scroll>
+          </ion-content>
     </div>
   </div>
   </ion-content>
 </ion-view>
+<div class="my-tabs">
+   <!-- Favourites Tab -->
+   <div class="icon ion-ios-heart" ng-click="redirectTo('favourites')">
+   </div>
+   <!-- List Tab -->
+   <div class="icon ion-ios-list" ng-click="redirectTo('list')">
+   </div>
+   <!-- Browse Tab -->
+   <div class="icon ion-ios-home active-tab" ng-click="redirectTo('home')">
+   </div>
+   <!-- Cart Tab -->
+   <div class="icon ion-ios-cart" ng-click="redirectTo('cart')">
+   </div>
+   <!-- Settings Tab -->
+   <div class="icon ion-ios-gear" ng-click="redirectTo('settings')">
+   </div>
+</div>

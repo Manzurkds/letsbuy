@@ -1,0 +1,116 @@
+/*Style for Home Page*/
+.search-box {
+  margin-left: 1.5em;
+  margin-right: 1.5em;
+}
+.search-box label{
+  border: 0;
+  padding-left: 0;
+}
+.search-input {
+  background: grey;
+}
+.sub-heading input{
+  background: rgb(240, 243, 248);
+  text-indent: 1em;
+  border-radius: 0.1em;
+  background-image: url('../img/search.png');
+  background-size: 1.5em 1.5em;
+  background-position: 95%;
+  background-repeat: no-repeat;
+}
+.sub-heading ::-webkit-input-placeholder {
+  text-indent: 1em;
+  font-size: 1.2em;
+}
+.screen-content-heading {
+  padding: 1em 1.5em 1em 1.5em;
+}
+.screen-content-heading p{
+  font-size: 1.5em;
+  padding-top: 0.5em;
+}
+.screen-content-main {
+  padding: 0 1.5em 0 1.5em;
+}
+.product-listings-content {
+  margin: 11em 1.5em 0 1.5em;
+  height: auto;
+}
+.product-listings {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.product {
+  height: 20em;
+  flex-basis: 48%;
+  background: white;
+  box-sizing: border-box;
+  border: 0.2em solid lightgrey;
+  border-radius: 0.5em;
+}
+.product:nth-child(even) {
+  margin-top: 2em;
+}
+.product:nth-child(2) {
+  height: 22em;
+  margin-top: 0em;
+}
+.product:last-child {
+  margin-bottom: 2em;
+}
+.product:nth-child(2) .product-view {
+  height: 17em !important;
+}
+.product-view {
+  background: transparent;
+  height: 15em;
+  /*border-top-left-radius: 0.5em;
+  border-top-right-radius: 0.5em;*/
+  border-bottom: 0.2em solid rgb(240, 243, 248);
+}
+.product-view-header {
+  height: 12em;
+  display: flex;
+}
+.product:nth-child(2) .product-view .product-view-header {
+  height: 14em;
+}
+.product-view-header img {
+  width: 12em;
+  margin: auto;
+}
+.product-view-footer {
+  font-size: 2em;
+  height: 2em;
+  padding: 0 1em 1em 1em;
+  display: flex;
+  align-items: center;
+}
+.product-view-footer .ion-ios-heart {
+  color: #BBC7CF;
+  flex: 1;
+}
+.is_favourited {
+  color: #D80338 !important;
+}
+.product-view-footer .ion-ios-cart {
+  color: #BBC7CF;
+  flex: 1;
+  text-align: right;
+}
+.is_carted {
+  color: #006CD0 !important;
+}
+.product-details {
+  background: transparent;
+  height: 5em;
+  padding: 0.5em 0 0.5em 0;
+}
+.product-details p {
+  font-size: 1.6em;
+  line-height: 0.8em;
+  margin-left: 1.2em;
+}

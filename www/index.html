@@ -17,6 +17,7 @@
 </script>-->
 
 <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+<link href="css/ubuntu.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
 
 <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
@@ -34,31 +35,13 @@
 <script src="js/controllers.js"></script>
 <script src="js/services.js"></script>
 </head>
-<body ng-app="letsbuy">
-  <ion-nav-bar class="bar-stable">
+<body ng-app="letsbuy" ng-controller="rootCtrl">
+  <!-- <ion-nav-bar class="bar-stable">
     <ion-nav-back-button>
     </ion-nav-back-button>
-  </ion-nav-bar>
+  </ion-nav-bar> -->
 
 <ion-nav-view>
 </ion-nav-view>
-
-<div class="my-tabs" ng-hide="$root.hideTabs" ng-controller="tabCtrl">
-   <!-- Favourites Tab -->
-   <div class="icon ion-ios-heart" ng-click="redirect('favourites')" ng-class="{active_tab: activeTab == 'favourites'}">
-   </div>
-   <!-- List Tab -->
-   <div class="icon ion-ios-list" ng-click="redirect('list')" ng-class="{active_tab: activeTab == 'list'}">
-   </div>
-   <!-- Browse Tab -->
-   <div class="icon ion-ios-home" ng-click="redirect('home')" ng-class="{active_tab: activeTab == 'home'}">
-   </div>
-   <!-- Cart Tab -->
-   <div class="icon ion-ios-cart" ng-click="redirect('cart')" ng-class="{active_tab: activeTab == 'cart'}">
-   </div>
-   <!-- Settings Tab -->
-   <div class="icon ion-ios-gear" ng-click="redirect('settings')" ng-class="{active_tab: activeTab == 'settings'}">
-   </div>
-</div>
 </body>
 </html>

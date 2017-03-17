@@ -40,7 +40,7 @@ angular.module('letsbuy', ['ionic', 'letsbuy.controllers', 'letsbuy.services'])
     url: '/productDetail',
     params: {
      'Id': null,
-     'Query': null
+     'Title': null
   },
     templateUrl: 'templates/productDetail.html',
     controller: 'productDetailCtrl'

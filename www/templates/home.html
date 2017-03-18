@@ -8,14 +8,14 @@
   <div class="sub-heading">
     <div class="search-box">
       <label class="item item-input">
-        <input type="text" placeholder="Search" class="search-input" ng-model="searchText">
+        <input type="text" placeholder="Search" class="search-input" ng-model="searchText.name">
       </label>
     </div>
   </div>
   <div class="screen-content">
     <div class="screen-content-heading">
-      <p ng-if="searchText">Showing {{(products | filter: searchText).length}} results for <b>"{{searchText}}"</b></p>
-      <p ng-if="!searchText">Showing All Products</p>
+      <p ng-if="searchText.name">Showing {{(products | filter: searchText.name).length}} results for <b>"{{searchText.name}}"</b></p>
+      <p ng-if="!searchText.name">Showing All Products</p>
     </div>
     <div class="screen-content-main">
           <ion-content class="product-listings-content">

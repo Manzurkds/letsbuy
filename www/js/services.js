@@ -110,20 +110,20 @@ localStorage.setItem("products", JSON.stringify(products));
     },
     fetchCart: function() {
       //Assuming this is the data we get from server for the products user has added to his cart
-      var allProducts = JSON.parse(localStorage.getItem("products"));
-
-      var cartedProducts = [];
-
-      var cartedProducts = JSON.parse(localStorage.getItem("cartedProducts"));
-
-      if(cartedProducts==null || cartedProducts.length < 1){
-        for(i=0; i<products.length; i++)
-          if(products[i].carted == true)
-            cartedProducts.push(products[i]);
-        localStorage.setItem("cartedProducts", JSON.stringify(cartedProducts));
-          }
-
-      return cartedProducts;
+      // var allProducts = JSON.parse(localStorage.getItem("products"));
+      //
+      // var cartedProducts = [];
+      //
+      // var cartedProducts = JSON.parse(localStorage.getItem("cartedProducts"));
+      //
+      // if(cartedProducts==null || cartedProducts.length < 1){
+      //   for(i=0; i<products.length; i++)
+      //     if(products[i].carted == true)
+      //       cartedProducts.push(products[i]);
+      //   localStorage.setItem("cartedProducts", JSON.stringify(cartedProducts));
+      //     }
+      //
+      // return cartedProducts;
     }
   };
 });

@@ -1,0 +1,78 @@
+<div class="bar-stable my-navbar">
+  <div class="navbar-action" ng-click="myGoBack()">
+    <h3><span class="icon ion-ios-arrow-back"></span> Back</h3>
+  </div>
+</div>
+<div class="title-cost">
+  <div class="title">
+    <h3>Your Cart</h3>
+  </div>
+  <div class="cost">
+    <p>Total Cost: <span> ${{totalPrice | number: 2}}</span></p>
+  </div>
+</div>
+<ion-view class="my-ion-view-cart">
+  <ion-content class="screen-body purchase-body">
+    <ion-slide-box show-pager="false">
+    <ion-slide>
+      <div class="purchase-track">
+        <div class="track-line">
+        </div>
+        <i class="ion-record activated"><span class="activated">Details</span></i>
+        <i class="ion-record"><span>Payment</span></i>
+        <i class="ion-record"><span>Success</span></i>
+      </div>
+      <div class="purchase-form">
+        <button type="button" name="button" ng-click="nextSlide()">Next</button>
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <div class="purchase-track">
+        <div class="track-line">
+        </div>
+        <i class="ion-checkmark-circled completed"><span>Details</span></i>
+        <i class="ion-record activated"><span  class="activated">Payment</span></i>
+        <i class="ion-record"><span>Success</span></i>
+      </div>
+      <div class="purchase-form">
+        <button type="button" name="button" ng-click="previousSlide()">Previous</button>
+        <button type="button" name="button" ng-click="nextSlide()">Next</button>
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <div class="purchase-track">
+        <div class="track-line">
+        </div>
+        <i class="ion-checkmark-circled completed"><span>Details</span></i>
+        <i class="ion-checkmark-circled completed"><span>Payment</span></i>
+        <i class="ion-record activated"><span class="activated">Success</span></i>
+      </div>
+      <div class="purchase-form">
+        <button type="button" name="button" ng-click="previousSlide()">Previous</button>
+      </div>
+    </ion-slide>
+  </ion-slide-box>
+  </ion-content>
+</ion-view>
+
+<div class="my-tabs add-cart-footer" ng-click="purchase(totalPrice)" ng-if="totalPrice>0">
+  <p>Purchase</p>
+</div>
+
+<div class="my-tabs" ng-if="totalPrice<=0">
+   <!-- Favourites Tab -->
+   <div class="icon ion-ios-heart" ng-click="redirectTo('favourites')">
+   </div>
+   <!-- List Tab -->
+   <div class="icon ion-ios-list" ng-click="redirectTo('list')">
+   </div>
+   <!-- Browse Tab -->
+   <div class="icon ion-ios-home" ng-click="redirectTo('home')">
+   </div>
+   <!-- Cart Tab -->
+   <div class="icon ion-ios-cart active-tab" ng-click="redirectTo('cart')">
+   </div>
+   <!-- Settings Tab -->
+   <div class="icon ion-ios-gear" ng-click="redirectTo('settings')">
+   </div>
+</div>

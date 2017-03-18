@@ -8,14 +8,14 @@
     <h3>Your Cart</h3>
   </div>
   <div class="cost">
-    <p>Total Cost: <span> ${{totalPrice}}</span></p>
+    <p>Total Cost: <span> ${{totalPrice | number: 2}}</span></p>
   </div>
 </div>
 <ion-view class="my-ion-view-cart">
   <ion-content class="screen-body cart-body">
     <div class="cart-list">
-      <div class="cart-item" ng-repeat="product in products">
-        <div class="item-container" ng-show="product.carted">
+      <div class="cart-item" ng-repeat="product in products" ng-show="product.carted">
+        <div class="item-container">
           <div class="cart-item-image">
             <img src="{{product.image}}" alt="{{product.name}}">
           </div>
@@ -32,11 +32,11 @@
   </ion-content>
 </ion-view>
 
-<div class="my-tabs add-cart-footer" ng-click="addToCart(selectedProduct.id)" ng-if="cartedProducts.length>0">
+<div class="my-tabs add-cart-footer" ng-click="redirect(totalPrice)" ng-if="totalPrice>0">
   <p>Purchase</p>
 </div>
 
-<div class="my-tabs" ng-if="cartedProducts.length<1">
+<div class="my-tabs" ng-if="totalPrice<=0">
    <!-- Favourites Tab -->
    <div class="icon ion-ios-heart" ng-click="redirectTo('favourites')">
    </div>

@@ -11,6 +11,7 @@ body {
   --inactive-icons-color: #BBC7CF;
   --alternate-text-color: #A0A0A0;
   --black-color: #1D1D1D;
+  --green-accent: #049539;
 }
 .my-navbar {
   padding-left: 1em;
@@ -322,6 +323,7 @@ body {
 .add-cart-footer {
   background: var(--blue-accent) !important;
   display: flex;
+  z-index: 100;
 }
 .add-cart-footer p {
   color: white;
@@ -418,6 +420,52 @@ body {
 }
 
 
+/*Style for Purchase Page*/
+.purchase-body {
+  background: var(--main-background-color);
+}
+.purchase-track {
+  background: white;
+  display: flex;
+  height: 10em;
+  padding-top: 2em;
+  align-items: start;
+  justify-content: space-between;
+}
+.purchase-track .track-line {
+  position: absolute;
+  /*Margin Top should be half the font size of i tag of purchase-track*/
+  margin-top: 1.25em;
+  height: 1px;
+  background: var(--main-background-color);
+  /*left and right should be half of (font-size + flex-basis) + padding-left of i tag of purchase-track */
+  left: 3.25em;
+  right: 3.25em;
+}
+.purchase-track i{
+  text-align: center;
+  font-size: 2.5em;
+  flex-basis: 2em;
+  color: var(--alternate-text-color);
+  z-index: 2;
+  line-height: 1em;
+}
+.purchase-track i span{
+  padding-left: 1em;
+  padding-right: 1em;
+  text-align: center;
+  font-size: 0.7em;
+  color: var(--black-color);
+}
+.purchase-track .activated {
+  color: var(--blue-accent);
+}
+.purchase-track .completed {
+  color: var(--green-accent);
+}
+.purchase-form {
+  width: 100%;
+}
 
 
 

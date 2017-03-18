@@ -77,7 +77,7 @@ $rootScope.products = products.all();
 }])
 
 
-.controller('cartCtrl', ['$scope','$rootScope','products','$ionicPopup', function($scope, $rootScope, products, $ionicPopup){
+.controller('cartCtrl', ['$scope','$rootScope','products','$ionicPopup','$state', function($scope, $rootScope, products, $ionicPopup, $state){
   $scope.cartedProducts = products.fetchCart();
 
   $scope.totalPrice = 0;
@@ -135,6 +135,26 @@ function removeItem(id) {
      }
    ]
  });
+  }
+
+  $scope.redirect = function(price){
+    $state.go("purchase", {TotalPrice: price});
+  }
+
+}])
+
+.controller('purchaseCtrl', ['$scope', '$rootScope','$stateParams','$ionicSlideBoxDelegate','$timeout', function($scope, $rootScope, $stateParams, $ionicSlideBoxDelegate, $timeout){
+  $scope.totalPrice = $stateParams.TotalPrice;
+
+  $timeout(function(){
+    $ionicSlideBoxDelegate.enableSlide(0);
+},0);
+
+  $scope.nextSlide = function(){
+    $ionicSlideBoxDelegate.next();
+  }
+  $scope.previousSlide = function(){
+    $ionicSlideBoxDelegate.previous();
   }
 
 }])

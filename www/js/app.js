@@ -66,6 +66,14 @@ angular.module('letsbuy', ['ionic', 'letsbuy.controllers', 'letsbuy.services'])
     templateUrl: 'templates/settings.html',
     controller: 'settingsCtrl'
   })
+  .state('purchase', {
+    url: '/purchase',
+    templateUrl: 'templates/purchase.html',
+    params: {
+     'TotalPrice': null
+  },
+    controller: 'purchaseCtrl'
+  })
 
   // Each tab has its own nav history stac
   // if none of the above states are matched, use this as the fallback

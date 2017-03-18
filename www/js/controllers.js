@@ -1,9 +1,11 @@
 angular.module('letsbuy.controllers', [])
 .controller('rootCtrl', ['$scope', '$state','$rootScope','products', function($scope, $state, $rootScope, products){
   //Just a controller to place all the global values and functions
+$rootScope.products = products.all();
+
 
   $rootScope.redirectTo = function(state) {
-    $state.go('cart');
+    $state.go(state);
   }
 
   $rootScope.openProductDetail = function(id, title){
@@ -11,12 +13,31 @@ angular.module('letsbuy.controllers', [])
     $state.go('productDetail', { Id: id, Title: title});
   }
 
-  $rootScope.addToCart = function(id){
+
+  $scope.addToFavourites = function(id){
     console.log(id);
-    products.updateCart(id);
+    for(i=0; i<$rootScope.products.length; i++)
+      if($rootScope.products[i].id == id)
+        if($rootScope.products[i].favourited == true)
+          $rootScope.products[i].favourited = false;
+        else
+          $rootScope.products[i].favourited = true;
+      localStorage.setItem("products", JSON.stringify($rootScope.products));
   }
 
-  $rootScope.products = products.all();
+
+  $rootScope.addToCart = function(id){
+    console.log(id);
+    for(i=0; i<$rootScope.products.length; i++)
+      if($rootScope.products[i].id == id)
+        if($rootScope.products[i].carted == true){
+          $rootScope.products[i].carted = false;
+          $rootScope.products[i].quantity = 0;
+        }
+        else
+          $rootScope.products[i].carted = true;
+      localStorage.setItem("products", JSON.stringify($rootScope.products));
+  }
 
 }])
 
@@ -24,10 +45,6 @@ angular.module('letsbuy.controllers', [])
 .controller('homeCtrl', ['$scope','$rootScope','$state', 'products', function($scope, $rootScope, $state, products){
   console.log("inside home ctrl");
 
-  $scope.addToFavourites = function(id){
-    console.log(id);
-    products.updateFavourites(id);
-  }
 
 
 }])
@@ -65,19 +82,14 @@ angular.module('letsbuy.controllers', [])
 
   $scope.totalPrice = 0;
 
-  for(i=0; i<$scope.cartedProducts.length; i++){
-    if(!$scope.cartedProducts[i].quantity){
-      $scope.cartedProducts[i].quantity = 1;
-      $scope.totalPrice+=$scope.cartedProducts[i].price;
-    } else {
-      $scope.totalPrice = $scope.totalPrice + $scope.cartedProducts[i].price*$scope.cartedProducts[i].quantity;
+  for(i=0; i<$rootScope.products.length; i++){
+      $scope.totalPrice = $scope.totalPrice + $rootScope.products[i].price*$rootScope.products[i].quantity;
     }
-  }
 
   localStorage.setItem("cartedProducts", JSON.stringify($scope.cartedProducts));
 
   $scope.reduceQuantityTriggered = function(id){
-    if($scope.cartedProducts[id].quantity<2) {
+    if($rootScope.products[id].quantity<2) {
       removeItemAlert(id);
     } else {
       reduceQuantity(id)
@@ -88,23 +100,23 @@ angular.module('letsbuy.controllers', [])
   }
 
 function reduceQuantity(id){
-  $scope.cartedProducts[id].quantity-=1;
-  $scope.totalPrice-=$scope.cartedProducts[id].price;
-  localStorage.setItem("cartedProducts", JSON.stringify($scope.cartedProducts));
+  $rootScope.products[id].quantity-=1;
+  $scope.totalPrice-=$rootScope.products[id].price;
+  localStorage.setItem("cartedProducts", JSON.stringify($rootScope.products));
 }
 
 function increaseQuantity(id){
-  $scope.cartedProducts[id].quantity+=1;
-  $scope.totalPrice+=$scope.cartedProducts[id].price;
-  localStorage.setItem("cartedProducts", JSON.stringify($scope.cartedProducts));
+  $rootScope.products[id].quantity+=1;
+  $scope.totalPrice+=$rootScope.products[id].price;
+  localStorage.setItem("cartedProducts", JSON.stringify($rootScope.products));
 }
 
 function removeItem(id) {
-  $scope.cartedProducts[id].quantity-=1;
-  $scope.totalPrice-=$scope.cartedProducts[id].price;
-  $scope.cartedProducts.splice(id, 1);
-  console.log($scope.cartedProducts);
-  localStorage.setItem("cartedProducts", JSON.stringify($scope.cartedProducts));
+  $rootScope.products[id].quantity = 0;
+  $scope.totalPrice-=$rootScope.products[id].price;
+  $rootScope.products[id].carted = false;
+  console.log($rootScope.products);
+  localStorage.setItem("cartedProducts", JSON.stringify($rootScope.products));
 }
 
 

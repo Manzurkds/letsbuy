@@ -14,8 +14,8 @@
 <ion-view class="my-ion-view-cart">
   <ion-content class="screen-body cart-body">
     <div class="cart-list">
-      <div class="cart-item" ng-repeat="product in products | filter: product.fucked">
-        <div class="item-container">
+      <div class="cart-item" ng-repeat="product in products">
+        <div class="item-container" ng-show="product.carted">
           <div class="cart-item-image">
             <img src="{{product.image}}" alt="{{product.name}}">
           </div>

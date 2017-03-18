@@ -58,7 +58,8 @@ angular.module('letsbuy', ['ionic', 'letsbuy.controllers', 'letsbuy.services'])
   .state('cart', {
     url: '/cart',
     templateUrl: 'templates/cart.html',
-    controller: 'cartCtrl'
+    controller: 'cartCtrl',
+    cache: false
   })
   .state('settings', {
     url: '/settings',

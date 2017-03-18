@@ -6,7 +6,7 @@ angular.module('letsbuy.services', [])
   var products = [{
     id: 0,
     name: 'Sleek Shades',
-    price: '$50',
+    price: 50,
     image: 'img/sleek-shades-1.png',
     size: 'M',
     dimension: 'W22 H12',
@@ -19,7 +19,7 @@ angular.module('letsbuy.services', [])
   }, {
     id: 1,
     name: 'Blue Oceans',
-    price: '$49.55',
+    price: 49.55,
     image: 'img/blue-oceans-1.png',
     size: 'L',
     dimension: 'W12 H11',
@@ -32,7 +32,7 @@ angular.module('letsbuy.services', [])
   }, {
     id: 2,
     name: 'Blue Oceans',
-    price: '$60',
+    price: 60,
     image: 'img/blue-oceans-2.png',
     size: 'M',
     dimension: 'W20 H15',
@@ -41,11 +41,11 @@ angular.module('letsbuy.services', [])
     desc1: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
     desc2: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
     favourited: false,
-    carted: false
+    carted: true
   }, {
     id: 3,
     name: 'Silver Metals',
-    price: '$50',
+    price: 50,
     image: 'img/silver-metals-1.png',
     size: 'M',
     dimension: 'W22 H12',
@@ -54,11 +54,11 @@ angular.module('letsbuy.services', [])
     desc1: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
     desc2: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
     favourited: false,
-    carted: false
+    carted: true
   }, {
     id: 4,
     name: 'Silver Metals',
-    price: '$50',
+    price: 50,
     image: 'img/silver-metals-2.png',
     size: 'M',
     dimension: 'W22 H12',
@@ -67,7 +67,7 @@ angular.module('letsbuy.services', [])
     desc1: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
     desc2: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
     favourited: false,
-    carted: false
+    carted: true
   }];
 
   return {
@@ -89,6 +89,19 @@ angular.module('letsbuy.services', [])
             products[i].carted = false;
           else
             products[i].carted = true;
+    },
+    fetchCart: function() {
+      //Assuming this is the data we get from server for the products user has added to his cart
+      var cartedProducts = JSON.parse(localStorage.getItem("cartedProducts"));
+
+      if(cartedProducts.length < 1){
+        for(i=0; i<products.length; i++)
+          if(products[i].carted == true)
+            cartedProducts.push(products[i]);
+        localStorage.setItem("cartedProducts", JSON.stringify(cartedProducts));
+          }
+
+      return cartedProducts;
     }
   };
 });

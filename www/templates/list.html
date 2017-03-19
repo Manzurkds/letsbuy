@@ -1,0 +1,37 @@
+<div class="bar-stable my-navbar">
+  <div class="navbar-action" ng-click="myGoBack()">
+    <h3><span class="icon ion-ios-arrow-back"></span> Back</h3>
+  </div>
+</div>
+<div class="title-cost">
+  <div class="title">
+    <h3>Some Listing</h3>
+  </div>
+</div>
+<ion-view class="my-ion-view-cart">
+  <ion-content class="screen-body cart-body">
+    <ion-list>
+      <ion-item ng-repeat="text in dummyText track by $index">
+        {{text}}
+      </ion-item>
+    </ion-list>
+
+  </ion-content>
+</ion-view>
+<div class="my-tabs">
+   <!-- Favourites Tab -->
+   <div class="icon ion-ios-heart" ng-click="redirectTo('favourites')">
+   </div>
+   <!-- List Tab -->
+   <div class="icon ion-ios-list active-tab" ng-click="redirectTo('list')">
+   </div>
+   <!-- Browse Tab -->
+   <div class="icon ion-ios-home" ng-click="redirectTo('home')">
+   </div>
+   <!-- Cart Tab -->
+   <div class="icon ion-ios-cart" ng-click="redirectTo('cart')">
+   </div>
+   <!-- Settings Tab -->
+   <div class="icon ion-ios-gear" ng-click="redirectTo('settings')">
+   </div>
+</div>

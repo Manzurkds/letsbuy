@@ -14,7 +14,7 @@ $rootScope.products = products.all();
   }
 
 
-  $scope.addToFavourites = function(id){
+  $rootScope.addToFavourites = function(id){
     console.log(id);
     for(i=0; i<$rootScope.products.length; i++)
       if($rootScope.products[i].id == id)
@@ -65,18 +65,67 @@ $rootScope.products = products.all();
     if($stateParams.Title)
       $scope.title = $stateParams.Title;
     else
-      $scope.title = 'Browse';
+      $scope.title = 'Products';
 
 }])
 
 
-.controller('favouritesCtrl', ['$scope','$rootScope', function($scope, $rootScope){
+.controller('favouritesCtrl', ['$scope','$rootScope','$ionicPopup', function($scope, $rootScope, $ionicPopup){
+
+  $scope.clearAll = function(){
+    $ionicPopup.show({
+    title: 'Are You Sure',
+    subTitle: 'Do you really want to remove all the items from your wishlist?',
+    buttons: [
+     { text: 'Cancel' },
+     {
+       text: '<b>Remove</b>',
+       type: 'button-assertive',
+       onTap: function() {
+         clearAllFavourites();
+       }
+     }
+    ]
+    });
+  }
+
+
+  $scope.remove = function(id){
+    $ionicPopup.show({
+    title: 'Are You Sure',
+    subTitle: 'Do you really want to remove this item from your wishlist?',
+    buttons: [
+     { text: 'Cancel' },
+     {
+       text: '<b>Remove</b>',
+       type: 'button-assertive',
+       onTap: function() {
+         $rootScope.addToFavourites(id);
+       }
+     }
+    ]
+    });
+  }
+
+
+function clearAllFavourites(){
+  for(i=0; i<$rootScope.products.length; i++)
+      if($rootScope.products[i].favourited == true)
+        $rootScope.products[i].favourited = false;
+    localStorage.setItem("products", JSON.stringify($rootScope.products));
+}
 
 }])
 
 
 .controller('listCtrl', ['$scope','$rootScope', function($scope, $rootScope){
+    var title = "I have no idea what it contains!"
 
+    $scope.dummyText = []
+
+    for(i=0; i<50; i++)
+      $scope.dummyText.push(title)
+console.log($scope.dummyText);
 }])
 
 

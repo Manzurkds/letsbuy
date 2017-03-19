@@ -320,6 +320,10 @@ body {
   line-height: 0.8em;
   margin-left: 1.2em;
 }
+.dummy-related {
+  border: 0.1em solid transparent;
+}
+
 .add-cart-footer {
   background: var(--blue-accent) !important;
   display: flex;
@@ -574,6 +578,22 @@ body {
 }
 
 
+/*Style for Favourites Page*/
+.favourites-item-detail {
+  flex-direction: column;
+  flex-basis: 50%;
+  justify-content: center;
+  padding-top: 2em;
+  bottom: 0;
+}
+.favourites-item-detail h3 {
+  font-size: 1.8em;
+
+}
+.favourites-item-detail p {
+  font-size: 1.3em;
+  color: var(--alternate-text-color);
+}
 
 
 

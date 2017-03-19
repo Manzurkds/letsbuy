@@ -6,7 +6,7 @@
 <ion-view class="my-ion-view">
   <ion-content class="screen-body">
   <div class="sub-heading">
-    <p class="product-detail-title">{{selectedProduct.name}}<span>{{selectedProduct.price}}</span></p>
+    <p class="product-detail-title">{{selectedProduct.name}}<span>${{selectedProduct.price}}</span></p>
   </div>
   <div class="screen-content">
       <div class="product-detail-main">
@@ -55,6 +55,9 @@
                   <p class="product-related-item-details-title">{{product.name}}</p>
                   <p class="product-related-item-details-price">{{product.price}}</p>
                 </div>
+              </div>
+              <div class="dummy-related">
+
               </div>
             </div>
             </ion-scroll>

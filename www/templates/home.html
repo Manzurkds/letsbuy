@@ -14,7 +14,7 @@
   </div>
   <div class="screen-content">
     <div class="screen-content-heading">
-      <p ng-if="searchText.name">Showing {{(products | filter: searchText.name).length}} results for <b>"{{searchText.name}}"</b></p>
+      <p ng-if="searchText.name">Showing {{(products | filter: searchText).length}} results for <b>"{{searchText.name}}"</b></p>
       <p ng-if="!searchText.name">Showing All Products</p>
     </div>
     <div class="screen-content-main">
@@ -32,7 +32,7 @@
                 </div>
                 <div class="product-details">
                   <p class="product-details-title">{{product.name}}</p>
-                  <p class="product-details-price">{{product.price}}</p>
+                  <p class="product-details-price">${{product.price}}</p>
                 </div>
               </div>
             </div>

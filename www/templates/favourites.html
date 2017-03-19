@@ -1,0 +1,48 @@
+<div class="bar-stable my-navbar">
+  <div class="navbar-action" ng-click="myGoBack()">
+    <h3><span class="icon ion-ios-arrow-back"></span> Back</h3>
+  </div>
+</div>
+<div class="title-cost">
+  <div class="title">
+    <h3>Your Wishlist</h3>
+  </div>
+  <div class="cost">
+    <p ng-click="clearAll()">Clear All</p>
+  </div>
+</div>
+<ion-view class="my-ion-view-cart">
+  <ion-content class="screen-body cart-body">
+  <div class="cart-list">
+    <div class="cart-item" ng-repeat="product in products" ng-show="product.favourited">
+      <div class="item-container">
+        <div class="cart-item-image">
+          <img src="{{product.image}}" alt="{{product.name}}">
+        </div>
+        <div class="favourites-item-detail">
+            <h3>{{product.name}}</h3>
+            <h3>${{product.price}}</h3>
+            <p ng-click="remove(product.id)">Remove</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  </ion-content>
+</ion-view>
+<div class="my-tabs">
+   <!-- Favourites Tab -->
+   <div class="icon ion-ios-heart  active-tab" ng-click="redirectTo('favourites')">
+   </div>
+   <!-- List Tab -->
+   <div class="icon ion-ios-list" ng-click="redirectTo('list')">
+   </div>
+   <!-- Browse Tab -->
+   <div class="icon ion-ios-home" ng-click="redirectTo('home')">
+   </div>
+   <!-- Cart Tab -->
+   <div class="icon ion-ios-cart" ng-click="redirectTo('cart')">
+   </div>
+   <!-- Settings Tab -->
+   <div class="icon ion-ios-gear" ng-click="redirectTo('settings')">
+   </div>
+</div>

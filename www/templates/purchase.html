@@ -1,6 +1,6 @@
 <div class="bar-stable my-navbar">
   <div class="navbar-action" ng-click="myGoBack()">
-    <h3><span class="icon ion-ios-arrow-back"></span> Back</h3>
+    <h3><span class="icon ion-ios-arrow-back"></span> Back to Cart</h3>
   </div>
 </div>
 <div class="title-cost">
@@ -23,20 +23,78 @@
         <i class="ion-record"><span>Success</span></i>
       </div>
       <div class="purchase-form">
-        <button type="button" name="button" ng-click="nextSlide()">Next</button>
+        <form name="detailsForm">
+          <div class="name">
+            <div class="first-name">
+              <span>First Name</span>
+              <label class="item item-input">
+                <input type="text" placeholder="Chris" ng-model="customerDetails.firstName" required minlength=3 maxlength=15>
+              </label>
+            </div>
+            <div class="last-name">
+              <span>Last Name</span>
+              <label class="item item-input">
+                <input type="text" placeholder="Matthews" ng-model="customerDetails.lastName" required minlength=3 maxlength=15>
+              </label>
+            </div>
+          </div>
+          <div class="address">
+            <span>Address</span>
+            <label class="item item-input">
+              <input type="text" placeholder="Mendelson Bartholdy Park" ng-model="customerDetails.addressMain" required minlength=5 maxlength=50>
+            </label>
+            <div class="address-code">
+              <div class="street">
+                <label class="item item-input">
+                  <input type="text" placeholder="Apt.6, 10335" ng-model="customerDetails.addressCode" required minlength=3 maxlength=15>
+                </label>
+              </div>
+              <div class="city">
+                <label class="item item-input">
+                  <input type="text" placeholder="Berlin" ng-model="customerDetails.addressCity" required minlength=2 maxlength=15>
+                </label>
+              </div>
+            </div>
+          </div>
+        </form>
+        <button type="button" name="button" class="button next-button" ng-click="goToPayment(detailsForm.$valid)">Proceed</button>
       </div>
     </ion-slide>
     <ion-slide>
       <div class="purchase-track">
         <div class="track-line">
         </div>
-        <i class="ion-checkmark-circled completed"><span>Details</span></i>
+        <i class="ion-checkmark-circled completed" ng-click="previousSlide()"><span>Details</span></i>
         <i class="ion-record activated"><span  class="activated">Payment</span></i>
         <i class="ion-record"><span>Success</span></i>
       </div>
       <div class="purchase-form">
-        <button type="button" name="button" ng-click="previousSlide()">Previous</button>
-        <button type="button" name="button" ng-click="nextSlide()">Next</button>
+      <form name="paymentForm">
+        <div class="payment-mode">
+          <span>Payment Mode</span>
+          <label class="item item-input select-label">
+            <select ng-class="{card_selected: customerDetails.payment.cardType}" ng-model="customerDetails.payment.cardType">
+              <option selected default value="">Master Card</option>
+              <option value="Master Card">Master Card</option>
+              <option value="Visa">Visa</option>
+              <option value="Maestro">Maestro</option>
+            </select>
+          </label>
+        </div>
+        <div class="card-details">
+          <span>Card Details</span>
+          <label class="item item-input">
+            <input type="number" placeholder="Card Number" ng-model="customerDetails.payment.cardNumber" required minlength=12 maxlength=16>
+          </label>
+            <label class="item item-input card-expiry">
+              <input type="text" placeholder="Expiry Date" ng-model="customerDetails.payment.expiryDate" required minlength=5 maxlength=5>
+            </label>
+            <label class="item item-input card-cvv">
+              <input type="number" placeholder="CVV" ng-model="customerDetails.payment.cvv" required minlength=3 maxlength=3>
+            </label>
+        </div>
+      </form>
+      <button type="button" name="button" class="button next-button" ng-click="placeOrder(paymentForm.$valid)">Place Order</button>
       </div>
     </ion-slide>
     <ion-slide>
@@ -44,11 +102,14 @@
         <div class="track-line">
         </div>
         <i class="ion-checkmark-circled completed"><span>Details</span></i>
-        <i class="ion-checkmark-circled completed"><span>Payment</span></i>
+        <i class="ion-checkmark-circled completed" ng-click="previousSlide()"><span>Payment</span></i>
         <i class="ion-record activated"><span class="activated">Success</span></i>
       </div>
       <div class="purchase-form">
-        <button type="button" name="button" ng-click="previousSlide()">Previous</button>
+        <div class="order-sucess">
+          <h3>Congratulations!</h3>
+          <p>Your shipment is on its way.</p>
+        </div>
       </div>
     </ion-slide>
   </ion-slide-box>

@@ -1,5 +1,5 @@
 angular.module('letsbuy.controllers', [])
-.controller('rootCtrl', ['$scope', '$state','$rootScope','products', function($scope, $state, $rootScope, products){
+.controller('rootCtrl', ['$scope', '$state','$rootScope','products','$ionicHistory', function($scope, $state, $rootScope, products, $ionicHistory){
   //Just a controller to place all the global values and functions
 $rootScope.products = products.all();
 
@@ -34,9 +34,15 @@ $rootScope.products = products.all();
           $rootScope.products[i].carted = false;
           $rootScope.products[i].quantity = 0;
         }
-        else
+        else {
           $rootScope.products[i].carted = true;
+          $rootScope.products[i].quantity = 1;
+        }
       localStorage.setItem("products", JSON.stringify($rootScope.products));
+  }
+
+  $rootScope.myGoBack = function(){
+    $ionicHistory.goBack();
   }
 
 }])
@@ -50,7 +56,7 @@ $rootScope.products = products.all();
 }])
 
 
-.controller('productDetailCtrl', ['$scope', '$rootScope','$stateParams','$ionicHistory', function($scope, $rootScope, $stateParams, $ionicHistory){
+.controller('productDetailCtrl', ['$scope', '$rootScope','$stateParams', function($scope, $rootScope, $stateParams){
     console.log("inside product detail controller");
 
     var id = $stateParams.Id;
@@ -61,9 +67,6 @@ $rootScope.products = products.all();
     else
       $scope.title = 'Browse';
 
-    $scope.myGoBack = function(){
-      $ionicHistory.goBack();
-    }
 }])
 
 
@@ -78,7 +81,6 @@ $rootScope.products = products.all();
 
 
 .controller('cartCtrl', ['$scope','$rootScope','products','$ionicPopup','$state', function($scope, $rootScope, products, $ionicPopup, $state){
-  $scope.cartedProducts = products.fetchCart();
 
   $scope.totalPrice = 0;
 
@@ -86,7 +88,7 @@ $rootScope.products = products.all();
       $scope.totalPrice = $scope.totalPrice + $rootScope.products[i].price*$rootScope.products[i].quantity;
     }
 
-  localStorage.setItem("cartedProducts", JSON.stringify($scope.cartedProducts));
+  console.log($rootScope.products);
 
   $scope.reduceQuantityTriggered = function(id){
     if($rootScope.products[id].quantity<2) {
@@ -116,7 +118,7 @@ function removeItem(id) {
   $scope.totalPrice-=$rootScope.products[id].price;
   $rootScope.products[id].carted = false;
   console.log($rootScope.products);
-  localStorage.setItem("cartedProducts", JSON.stringify($rootScope.products));
+  localStorage.setItem("products", JSON.stringify($rootScope.products));
 }
 
 
@@ -143,8 +145,22 @@ function removeItem(id) {
 
 }])
 
-.controller('purchaseCtrl', ['$scope', '$rootScope','$stateParams','$ionicSlideBoxDelegate','$timeout', function($scope, $rootScope, $stateParams, $ionicSlideBoxDelegate, $timeout){
+.controller('purchaseCtrl', ['$scope', '$rootScope','$stateParams','$ionicSlideBoxDelegate','$timeout','$ionicPopup', function($scope, $rootScope, $stateParams, $ionicSlideBoxDelegate, $timeout, $ionicPopup){
   $scope.totalPrice = $stateParams.TotalPrice;
+
+  $scope.customerDetails = {
+    firstName: '',
+    lastName: '',
+    addressMain: '',
+    addressCode: '',
+    addressCity: '',
+    payment: {
+      cardType: null,
+      cardNumber: '',
+      expiryDate: '',
+      cvv: ''
+    }
+  }
 
   $timeout(function(){
     $ionicSlideBoxDelegate.enableSlide(0);
@@ -156,6 +172,34 @@ function removeItem(id) {
   $scope.previousSlide = function(){
     $ionicSlideBoxDelegate.previous();
   }
+
+var customerDetails = {};
+
+  $scope.goToPayment = function(validation){
+    if(!validation)
+      $ionicSlideBoxDelegate.next();
+    else
+      $ionicSlideBoxDelegate.next();
+    console.log($scope.customerDetails);
+  }
+
+  $scope.placeOrder = function(validation){
+    if(!validation)
+      // showPopup();
+      $ionicSlideBoxDelegate.next();
+    else
+      $ionicSlideBoxDelegate.next();
+  }
+
+function showPopup(){
+  $ionicPopup.show({
+ title: 'Oops',
+ subTitle: 'It seems that you have not field all the fields. Please fill all the fields and try again',
+ buttons: [
+   { text: 'Okay' }
+ ]
+});
+}
 
 }])
 

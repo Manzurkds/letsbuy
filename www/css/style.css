@@ -342,7 +342,7 @@ body {
 }
 .title-cost {
   display: flex;
-  border-bottom: 2px solid var(--main-background-color);
+  border-bottom: 1px solid var(--main-background-color);
   align-items: flex-end;
 }
 .title-cost .title {
@@ -424,6 +424,9 @@ body {
 .purchase-body {
   background: var(--main-background-color);
 }
+.purchase-body:last-child {
+  background: white;
+}
 .purchase-track {
   background: white;
   display: flex;
@@ -431,6 +434,7 @@ body {
   padding-top: 2em;
   align-items: start;
   justify-content: space-between;
+  border-bottom: 1px solid var(--main-background-color);
 }
 .purchase-track .track-line {
   position: absolute;
@@ -464,7 +468,109 @@ body {
   color: var(--green-accent);
 }
 .purchase-form {
+  padding: 2em 1.5em 0 1.5em;
+}
+.purchase-form span {
+  font-size: 1.8em;
+  color: var(--alternate-text-color);
+}
+.purchase-form label {
+  margin-top: 0.6em;
+  height: 2.5em;
+  border: 1px solid #D8DFE5;
+  border-radius: 5px;
+}
+.purchase-form label:hover {
+  border-color: var(--blue-accent);
+}
+.purchase-form input {
+  font-size: 1em;
+  color: var(--black-color);
+}
+
+.purchase-form ::-webkit-input-placeholder {
+  color: #D8DFE5;
+}
+.purchase-form select {
+  color: #D8DFE5;
+  border: none;
   width: 100%;
+  margin-right: 0.2em;
+}
+.card_selected {
+  color: var(--black-color) !important;
+}
+.purchase-form option[default] {
+  display: none;
+}
+.select-label {
+  width: 50%;
+}
+.purchase-form .name {
+  display: flex;
+  justify-content: space-between;
+}
+.name .first-name {
+  flex-basis: 48%;
+}
+.name .last-name {
+  flex-basis: 48%;
+}
+
+.purchase-form .address {
+  margin: 3em 0 1em 0;
+}
+.address-code {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1em;
+}
+.address-code .street {
+  flex-basis: 48%;
+}
+.address-code .city {
+  flex-basis: 48%;
+}
+
+.next-button {
+  background: var(--blue-accent) !important;
+  color: white !important;
+  float: right;
+  margin-top: 1.5em;
+  padding: 0 1em 0 1em;
+}
+
+.card-details {
+  margin-top: 3em;
+}
+
+.card-details-2 {
+  position: absolute;
+}
+.card-expiry {
+  width: 50%;
+  display: inline-block;
+}
+.card-cvv {
+  position: absolute;
+  width: 20%;
+  display: inline-block;
+  margin-left: 1em;
+}
+.order-sucess {
+  margin: 0 auto;
+  margin-top: 30%;
+  width: 100%;
+  text-align: center;
+}
+.order-sucess h3{
+  color: var(--blue-accent);
+  font-size: 3em;
+}
+.order-sucess p{
+  color: var(--black-color);
+  font-size: 1.6em;
+  margin-top: 1em;
 }
 
 

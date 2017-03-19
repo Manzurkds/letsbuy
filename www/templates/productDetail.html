@@ -11,6 +11,7 @@
   <div class="screen-content">
       <div class="product-detail-main">
         <div class="product-detail-image" style="background: url({{selectedProduct.image}}); background-size:20em; background-repeat: no-repeat; background-position: center;">
+          <i class="icon ion-ios-heart" ng-class="{is_favourited: selectedProduct.favourited}" ng-click="addToFavourites(selectedProduct.id)"></i>
         </div>
         <div class="product-detail-description">
           <div class="product-section-1">
@@ -53,11 +54,10 @@
                 </div>
                 <div class="product-related-item-details" ng-click="redirect(product.id, searchText)">
                   <p class="product-related-item-details-title">{{product.name}}</p>
-                  <p class="product-related-item-details-price">{{product.price}}</p>
+                  <p class="product-related-item-details-price">${{product.price}}</p>
                 </div>
               </div>
               <div class="dummy-related">
-
               </div>
             </div>
             </ion-scroll>
@@ -67,11 +67,12 @@
   </div>
   </ion-content>
 </ion-view>
-<div class="my-tabs add-cart-footer" ng-click="addToCart(selectedProduct.id)">
-  <div ng-hide="selectedProduct.carted">
+<div class="my-tabs add-cart-footer">
+  <div ng-hide="selectedProduct.carted" ng-click="addToCart(selectedProduct.id)">
     <p>Add to Cart</p>
   </div>
   <div ng-show="selectedProduct.carted" ng-click="redirectTo('cart')">
     <p>Added to Cart</p>
+    <p class="buy-now">Buy Now!</p>
   </div>
 </div>

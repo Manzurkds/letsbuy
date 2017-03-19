@@ -1,5 +1,5 @@
 angular.module('letsbuy.controllers', [])
-.controller('rootCtrl', ['$scope', '$state','$rootScope','products','$ionicHistory', function($scope, $state, $rootScope, products, $ionicHistory){
+.controller('rootCtrl', ['$scope', '$state','$rootScope','products','$ionicHistory','$cordovaToast', function($scope, $state, $rootScope, products, $ionicHistory, $cordovaToast){
   //Just a controller to place all the global values and functions
 $rootScope.products = products.all();
 
@@ -15,31 +15,55 @@ $rootScope.products = products.all();
 
 
   $rootScope.addToFavourites = function(id){
-    console.log(id);
+    var message= '';
+
     for(i=0; i<$rootScope.products.length; i++)
       if($rootScope.products[i].id == id)
-        if($rootScope.products[i].favourited == true)
+        if($rootScope.products[i].favourited == true){
           $rootScope.products[i].favourited = false;
-        else
+          message = "Item removed from your wishlist";
+        }
+        else{
           $rootScope.products[i].favourited = true;
+          message = "Item added to your wishlist";
+        }
       localStorage.setItem("products", JSON.stringify($rootScope.products));
+
+      $rootScope.showToast(message, "short", "top");
   }
 
 
   $rootScope.addToCart = function(id){
-    console.log(id);
+    var message = '';
+
     for(i=0; i<$rootScope.products.length; i++)
       if($rootScope.products[i].id == id)
         if($rootScope.products[i].carted == true){
           $rootScope.products[i].carted = false;
           $rootScope.products[i].quantity = 0;
+          message = "Item removed from your cart";
         }
         else {
           $rootScope.products[i].carted = true;
           $rootScope.products[i].quantity = 1;
+          message = "Item added to your cart";
         }
       localStorage.setItem("products", JSON.stringify($rootScope.products));
+
+      $rootScope.showToast(message, "short", "top");
   }
+
+$rootScope.showToast = function(message, duration, location){
+  console.log(message);
+  console.log(duration);
+  console.log(location);
+  $cordovaToast.show(message, duration, location).then(function(success) {
+           console.log("The toast was shown");
+       }, function (error) {
+           console.log("The toast was not shown due to " + error);
+       });
+}
+
 
   $rootScope.myGoBack = function(){
     $ionicHistory.goBack();
@@ -50,7 +74,6 @@ $rootScope.products = products.all();
 
 .controller('homeCtrl', ['$scope','$rootScope','$state', 'products', function($scope, $rootScope, $state, products){
   console.log("inside home ctrl");
-
 
 
 }])
@@ -113,6 +136,8 @@ function clearAllFavourites(){
       if($rootScope.products[i].favourited == true)
         $rootScope.products[i].favourited = false;
     localStorage.setItem("products", JSON.stringify($rootScope.products));
+    var message = "All items cleared from wishlist"
+    $rootScope.showToast(message, "short", "top");
 }
 
 }])
@@ -125,7 +150,7 @@ function clearAllFavourites(){
 
     for(i=0; i<50; i++)
       $scope.dummyText.push(title)
-console.log($scope.dummyText);
+
 }])
 
 
@@ -226,7 +251,7 @@ var customerDetails = {};
 
   $scope.goToPayment = function(validation){
     if(!validation)
-      $ionicSlideBoxDelegate.next();
+      showPopup();
     else
       $ionicSlideBoxDelegate.next();
     console.log($scope.customerDetails);
@@ -234,8 +259,7 @@ var customerDetails = {};
 
   $scope.placeOrder = function(validation){
     if(!validation)
-      // showPopup();
-      $ionicSlideBoxDelegate.next();
+      showPopup();
     else
       $ionicSlideBoxDelegate.next();
   }
@@ -253,5 +277,11 @@ function showPopup(){
 }])
 
 .controller('settingsCtrl', ['$scope','$rootScope', function($scope, $rootScope){
+  $scope.exitApp = function(){
+    ionic.Platform.exitApp()
+  }
+}])
 
+.controller('aboutCtrl', ['$scope', '$rootScope', function($scope, $rootScope){
+  
 }])

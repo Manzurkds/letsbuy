@@ -16,13 +16,13 @@
     <div class="cart-list">
       <div class="cart-item" ng-repeat="product in products" ng-show="product.carted">
         <div class="item-container">
-          <div class="cart-item-image">
+          <div class="cart-item-image" ng-click="openProductDetail(product.id, 'Cart')">
             <img src="{{product.image}}" alt="{{product.name}}">
           </div>
           <div class="cart-item-detail">
               <h3>{{product.name}}</h3>
               <div class="quantity">
-                <p>Quantity: &emsp; <span ng-click="reduceQuantityTriggered($index)">-</span> <span class="quantity-value">&nbsp {{product.quantity}} &nbsp</span> <span ng-click="increaseQuantityTriggered($index)">+</span></p>
+                <p>Quantity: &emsp; <span ng-click="reduceQuantityTriggered($index); $event.stopPropagation()">&nbsp - </span> <span class="quantity-value">&nbsp {{product.quantity}} &nbsp</span> <span ng-click="increaseQuantityTriggered($index); $event.stopPropagation()"> +&nbsp</span></p>
               </div>
               <h3>${{product.price}}</h3>
           </div>

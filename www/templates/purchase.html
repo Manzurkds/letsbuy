@@ -28,31 +28,36 @@
             <div class="first-name">
               <span>First Name</span>
               <label class="item item-input">
-                <input type="text" placeholder="Chris" ng-model="customerDetails.firstName" required minlength=3 maxlength=15>
+                <input type="text" name="firstName" placeholder="Chris" ng-model="customerDetails.firstName" required minlength=3 maxlength=15>
               </label>
+              <p style="display: inline-block" ng-show="detailsForm.firstName.$invalid&&detailsForm.firstName.$dirty">Atleast 3 letters</p>
             </div>
             <div class="last-name">
               <span>Last Name</span>
               <label class="item item-input">
-                <input type="text" placeholder="Matthews" ng-model="customerDetails.lastName" required minlength=3 maxlength=15>
+                <input type="text" name="lastName" placeholder="Matthews" ng-model="customerDetails.lastName" required minlength=3 maxlength=15>
               </label>
+              <p ng-show="detailsForm.lastName.$invalid&&detailsForm.lastName.$dirty">Atleast 3 letters</p>
             </div>
           </div>
           <div class="address">
             <span>Address</span>
             <label class="item item-input">
-              <input type="text" placeholder="Mendelson Bartholdy Park" ng-model="customerDetails.addressMain" required minlength=5 maxlength=50>
+              <input type="text" name="address" placeholder="Mendelson Bartholdy Park" ng-model="customerDetails.addressMain" required minlength=5 maxlength=50>
             </label>
+            <p ng-show="detailsForm.address.$invalid&&detailsForm.address.$dirty">Atleast 5 letters</p>
             <div class="address-code">
               <div class="street">
                 <label class="item item-input">
-                  <input type="text" placeholder="Apt.6, 10335" ng-model="customerDetails.addressCode" required minlength=3 maxlength=15>
+                  <input type="text" name="addressCode" placeholder="Apt.6, 10335" ng-model="customerDetails.addressCode" required minlength=3 maxlength=15>
                 </label>
+                <p ng-show="detailsForm.addressCode.$invalid&&detailsForm.addressCode.$dirty">Atleast 3 letters</p>
               </div>
               <div class="city">
                 <label class="item item-input">
-                  <input type="text" placeholder="Berlin" ng-model="customerDetails.addressCity" required minlength=2 maxlength=15>
+                  <input type="text" name="city" placeholder="Berlin" ng-model="customerDetails.addressCity" required minlength=2 maxlength=15>
                 </label>
+                <p ng-show="detailsForm.city.$invalid&&detailsForm.city.$dirty">Atleast 2 letters</p>
               </div>
             </div>
           </div>
@@ -84,14 +89,19 @@
         <div class="card-details">
           <span>Card Details</span>
           <label class="item item-input">
-            <input type="number" placeholder="Card Number" ng-model="customerDetails.payment.cardNumber" required minlength=12 maxlength=16>
+            <input type="number" name="cardNumber" placeholder="Card Number" ng-model="customerDetails.payment.cardNumber" required minlength=12 maxlength=16>
           </label>
-            <label class="item item-input card-expiry">
-              <input type="text" placeholder="Expiry Date" ng-model="customerDetails.payment.expiryDate" required minlength=5 maxlength=5>
-            </label>
-            <label class="item item-input card-cvv">
-              <input type="number" placeholder="CVV" ng-model="customerDetails.payment.cvv" required minlength=3 maxlength=3>
-            </label>
+          <p ng-show="paymentForm.cardNumber.$invalid&&paymentForm.cardNumber.$dirty">Between 12 to 16 Numbers</p>
+            <div class="card-details-inner">
+              <label class="item item-input card-expiry">
+                <input type="text" name="expiryDate" placeholder="Expiry Date" ng-model="customerDetails.payment.expiryDate" required minlength=5 maxlength=5>
+              </label>
+              <p ng-show="paymentForm.expiryDate.$invalid&&paymentForm.expiryDate.$dirty">Enter as MM/YY</p>
+              <label class="item item-input card-cvv">
+                <input type="number" name="cardCVV" placeholder="CVV" ng-model="customerDetails.payment.cvv" required minlength=3 maxlength=3>
+              </label>
+              <p ng-show="paymentForm.cardCVV.$invalid&&paymentForm.cardCVV.$dirty" style="padding-left: 50%">Requires 3 numbers</p>
+            </div>
         </div>
       </form>
       <button type="button" name="button" class="button next-button" ng-click="placeOrder(paymentForm.$valid)">Place Order</button>
@@ -102,13 +112,13 @@
         <div class="track-line">
         </div>
         <i class="ion-checkmark-circled completed"><span>Details</span></i>
-        <i class="ion-checkmark-circled completed" ng-click="previousSlide()"><span>Payment</span></i>
+        <i class="ion-checkmark-circled completed"><span>Payment</span></i>
         <i class="ion-record activated"><span class="activated">Success</span></i>
       </div>
       <div class="purchase-form">
         <div class="order-sucess">
           <h3>Congratulations!</h3>
-          <p>Your shipment is on its way.</p>
+          <h4>Your shipment is on its way.</h4>
         </div>
       </div>
     </ion-slide>

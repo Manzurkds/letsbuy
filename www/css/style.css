@@ -201,6 +201,12 @@ body {
   width: 100%;
   height: 25em;
 }
+.product-detail-image i{
+  float: right;
+  font-size: 3em;
+  padding: 0.5em;
+  color: var(--alternate-text-color);
+}
 .product-detail-description {
   width: 100%;
   background-color: white;
@@ -334,6 +340,10 @@ body {
   font-size: 1.7em;
   margin: auto;
 }
+.add-cart-footer .buy-now {
+  font-size: 1.3em;
+  text-align: center;
+}
 
 
 
@@ -348,6 +358,7 @@ body {
   display: flex;
   border-bottom: 1px solid var(--main-background-color);
   align-items: flex-end;
+  padding-top: 0.1em;
 }
 .title-cost .title {
   flex-basis: 50%;
@@ -382,7 +393,7 @@ body {
 .item-container {
   display: flex;
   justify-content: space-between;
-  padding: 1.5em 1.5em 0 1.5em;
+  padding: 1.5em 1.5em 0.1em 1.5em;
 }
 .cart-item-image {
   display: flex;
@@ -418,6 +429,7 @@ body {
 }
 .cart-item-detail .quantity span {
   font-weight: bold;
+  font-size: 1.3em;
 }
 .quantity .quantity-value {
   color: var(--black-color);
@@ -427,6 +439,7 @@ body {
 /*Style for Purchase Page*/
 .purchase-body {
   background: var(--main-background-color);
+  margin-bottom: 13em;
 }
 .purchase-body:last-child {
   background: white;
@@ -474,6 +487,11 @@ body {
 .purchase-form {
   padding: 2em 1.5em 0 1.5em;
 }
+.purchase-form p{
+  position: absolute;
+  font-size: 1.2em;
+  color: var(--alternate-text-color);
+}
 .purchase-form span {
   font-size: 1.8em;
   color: var(--alternate-text-color);
@@ -500,6 +518,7 @@ body {
   border: none;
   width: 100%;
   margin-right: 0.2em;
+  background: transparent;
 }
 .card_selected {
   color: var(--black-color) !important;
@@ -551,6 +570,9 @@ body {
 .card-details-2 {
   position: absolute;
 }
+.card-details-inner {
+  padding-top: 1em;
+}
 .card-expiry {
   width: 50%;
   display: inline-block;
@@ -571,7 +593,7 @@ body {
   color: var(--blue-accent);
   font-size: 3em;
 }
-.order-sucess p{
+.order-sucess h4{
   color: var(--black-color);
   font-size: 1.6em;
   margin-top: 1em;
@@ -595,6 +617,43 @@ body {
   color: var(--alternate-text-color);
 }
 
+
+/*Style for About Page*/
+.about-body {
+  background: white;
+  padding-top: 0.5em;
+  /*Margin Bottom = top height(7) + navbar height(6) */
+  margin-bottom: 13em;
+  display: flex;
+}
+.manzur {
+  background: url('../img/manzur.jpg') no-repeat;
+  background-size: contain;
+  border-radius: 50%;
+  width: 18em;
+  height: 18em;
+  margin: auto;
+  margin-top: 2em;
+}
+.author-info {
+  margin: auto;
+  margin-top: 3em;
+  text-align: center;
+}
+.author-info h3{
+  color: var(--black-color);
+  font-size: 2.5em;
+  margin-bottom: 1em;
+}
+.author-info i{
+  color: var(--heart-color);
+  font-size: 4em;
+}
+.author-info p {
+  font-size: 1.5em;
+  color: var(--alternate-text-color);
+  margin-top: 1.5em;
+}
 
 
 /*Ionic Default Theming changes*/

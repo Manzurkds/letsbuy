@@ -14,15 +14,15 @@
 <ion-view class="my-ion-view-cart">
   <ion-content class="screen-body cart-body">
   <div class="cart-list">
-    <div class="cart-item" ng-repeat="product in products" ng-show="product.favourited">
-      <div class="item-container">
+    <div class="cart-item" ng-repeat="product in products" ng-show="product.favourited" ng-click="openProductDetail(product.id, 'Wishlist')">
+      <div class="item-container" style="padding-bottom: 0.5em">
         <div class="cart-item-image">
           <img src="{{product.image}}" alt="{{product.name}}">
         </div>
         <div class="favourites-item-detail">
             <h3>{{product.name}}</h3>
             <h3>${{product.price}}</h3>
-            <p ng-click="remove(product.id)">Remove</p>
+            <p ng-click="remove(product.id); $event.stopPropagation()">Remove</p>
         </div>
       </div>
     </div>

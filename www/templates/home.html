@@ -20,7 +20,7 @@
     <div class="screen-content-main">
           <ion-content class="product-listings-content">
             <div class="product-listings">
-              <div class="product" ng-repeat="product in products | filter:searchText"  ng-click="openProductDetail(product.id, searchText)">
+              <div class="product" ng-repeat="product in products | filter:searchText" ng-click="openProductDetail(product.id, searchText.name)">
                 <div class="product-view">
                   <div class="product-view-header">
                     <img src="{{product.image}}" alt="">

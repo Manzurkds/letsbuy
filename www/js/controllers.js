@@ -222,6 +222,7 @@ function removeItem(id) {
 .controller('purchaseCtrl', ['$scope', '$rootScope','$stateParams','$ionicSlideBoxDelegate','$timeout','$ionicPopup', function($scope, $rootScope, $stateParams, $ionicSlideBoxDelegate, $timeout, $ionicPopup){
   $scope.totalPrice = $stateParams.TotalPrice;
 
+  //Basic customer detail for ordering
   $scope.customerDetails = {
     firstName: '',
     lastName: '',
@@ -260,8 +261,11 @@ var customerDetails = {};
   $scope.placeOrder = function(validation){
     if(!validation)
       showPopup();
-    else
+    else {
       $ionicSlideBoxDelegate.next();
+      //Remove items from cart after successful order
+      clearCart();
+    }
   }
 
 function showPopup(){
@@ -269,19 +273,45 @@ function showPopup(){
  title: 'Oops',
  subTitle: 'It seems that you have not field all the fields. Please fill all the fields and try again',
  buttons: [
-   { text: 'Okay' }
+   { text: 'Okay',
+     type: 'button-blue'}
  ]
 });
 }
 
+clearCart = function(){
+  for(i=0; i<$rootScope.products.length; i++)
+      if($rootScope.products[i].carted == true) {
+        $rootScope.products[i].carted = false;
+        $rootScope.products[i].quantity = 0;
+      }
+    localStorage.setItem("products", JSON.stringify($rootScope.products));
+}
+
 }])
 
-.controller('settingsCtrl', ['$scope','$rootScope', function($scope, $rootScope){
+.controller('settingsCtrl', ['$scope','$rootScope','$ionicPopup', function($scope, $rootScope, $ionicPopup){
   $scope.exitApp = function(){
-    ionic.Platform.exitApp()
+    $ionicPopup.show({
+      title: 'Exit App?',
+      subTitle: "Sorry to see you go, we'd love if you stay.",
+      buttons: [
+        { text: 'Cancel' },
+        {
+          text: '<b>Exit</b>',
+          type: 'button-assertive',
+          onTap: function() {
+            ionic.Platform.exitApp();
+          }
+        }
+      ]
+    });
   }
+
+
+
 }])
 
 .controller('aboutCtrl', ['$scope', '$rootScope', function($scope, $rootScope){
-  
+
 }])
